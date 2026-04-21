@@ -61,10 +61,9 @@ y_val_svm   = np.where(y_val   == 0, -1, 1).astype(np.float64)
 y_test_svm  = np.where(y_test  == 0, -1, 1).astype(np.float64)
 
 # ============================================================
-# 2b) CHUAN HOA FEATURE (rat quan trong khi dung lr lon)
+# 2b) CHUAN HOA FEATURE
 # ============================================================
-# Neu khong chuan hoa: cac feature co scale khac nhau -> gradient rat lon
-# -> de gay NaN/Inf khi lr cao
+
 print("\nDang chuan hoa feature (mean=0, std=1)...")
 mean = X_train.mean(axis=0)
 std  = X_train.std(axis=0) + 1e-8   # +epsilon tranh chia 0
@@ -95,7 +94,7 @@ print(f"So mau       -> PNEUMONIA: {n_pos}      | NORMAL: {n_neg}")
 print("\n===== BAT DAU HUAN LUYEN SVM =====")
 svm = SoftMarginSVM(
     C            = 1.0,
-    lr           = 0.01,   # an toan sau khi da chuan hoa feature
+    lr           = 0.01,   
     n_epochs     = 30,
     batch_size   = 64,
     lr_decay     = 0.95,
